@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Avaliação | RunVision</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e90ff;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #1e90ff;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0073cc;
+    }
+
+    @media (max-width: 600px) {
+      form {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Formulário de Avaliação Física</h1>
+  <form id="avaliacaoForm">
+    <label>Nome completo:</label>
+    <input type="text" name="nome" required>
+
+    <label>Idade:</label>
+    <input type="number" name="idade" required>
+
+    <label>Altura (em cm):</label>
+    <input type="text" name="altura" required>
+
+    <label>Peso atual (em kg):</label>
+    <input type="text" name="peso" required>
+
+    <label>Objetivo principal:</label>
+    <select name="objetivo" required>
+      <option value="">Selecione</option>
+      <option>Hipertrofia</option>
+      <option>Emagrecimento / definição</option>
+      <option>Condicionamento físico</option>
+      <option>Estética corporal</option>
+      <option>Saúde e bem-estar</option>
+    </select>
+
+    <label>Nível de treino:</label>
+    <select name="nivel" required>
+      <option value="">Selecione</option>
+      <option>Nunca treinei</option>
+      <option>Treinei antes, estou parado(a)</option>
+      <option>Treino atualmente</option>
+    </select>
+
+    <label>Quantos dias por semana consegue treinar?</label>
+    <input type="text" name="frequencia" required>
+
+    <label>Tempo disponível por treino:</label>
+    <input type="text" name="tempo" required>
+
+    <label>Local onde pretende treinar:</label>
+    <input type="text" name="localTreino" required>
+
+    <label>Possui alguma limitação ou problema de saúde?</label>
+    <textarea name="saude" rows="3"></textarea>
+
+    <label>Como está sua alimentação atualmente?</label>
+    <textarea name="alimentacao" rows="2"></textarea>
+
+    <label>Motivação para treinar / expectativa:</label>
+    <textarea name="motivacao" rows="3"></textarea>
+
+    <label>Informações adicionais (opcional):</label>
+    <textarea name="obs" rows="3"></textarea>
+
+    <button type="submit">Enviar para WhatsApp</button>
+  </form>
+
+  <script>
+    document.getElementById("avaliacaoForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const dados = {
+        nome: form.nome.value,
+        idade: form.idade.value,
+        altura: form.altura.value,
+        peso: form.peso.value,
+        objetivo: form.objetivo.value,
+        nivel: form.nivel.value,
+        frequencia: form.frequencia.value,
+        tempo: form.tempo.value,
+        localTreino: form.localTreino.value,
+        saude: form.saude.value,
+        alimentacao: form.alimentacao.value,
+        motivacao: form.motivacao.value,
+        obs: form.obs.value
+      };
+
+      const mensagem =
+`Novo formulário de avaliação recebido:
+
+👤 Nome: ${dados.nome}
+📅 Idade: ${dados.idade}
+📏 Altura: ${dados.altura} cm
+⚖️ Peso: ${dados.peso} kg
+🎯 Objetivo: ${dados.objetivo}
+📊 Nível: ${dados.nivel}
+📆 Frequência: ${dados.frequencia} dias/semana
+⏱️ Tempo por treino: ${dados.tempo}
+🏋️ Local de treino: ${dados.localTreino}
+🩺 Saúde: ${dados.saude}
+🥗 Alimentação: ${dados.alimentacao}
+🔥 Motivação: ${dados.motivacao}
+📝 Observações: ${dados.obs}`;
+
+      const numero = "5592984413665";
+      const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+      window.open(link, "_blank");
+    });
+  </script>
+
+</body>
+</html>
